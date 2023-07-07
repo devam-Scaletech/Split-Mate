@@ -1,8 +1,10 @@
 @import '../styles/variables';
 .primary--btn {
-	background-color: $bright-orange;
-	padding: 10px 40px;
+	background: $blue-light;
+	padding: 7px 16px;
+	border: none;
 	color: $white-color;
+	letter-spacing: 1.5px;
 }
 
 .user-profile--wrapper {
