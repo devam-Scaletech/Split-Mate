@@ -1,7 +1,6 @@
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import Layout from 'shared/hoc/layout/component/layout';
-
-import CreateExpense from 'feature/createExpense/container/createExpense';
+import CreateExpenseContainer from 'feature/createExpense/container/createExpenseContainer';
 import 'assets/styles/index.scss';
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
 			<Layout>
 				<Routes>
 					<Route path='*' element={<Navigate replace to='/homePage' />} />
-					<Route path='/createExpense' element={<CreateExpense />} />
+					<Route path='/createExpense' element={<CreateExpenseContainer />} />
 				</Routes>
 			</Layout>
 		</BrowserRouter>
