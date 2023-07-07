@@ -38,7 +38,7 @@
 	@include width(90% !important);
 }
 
-.width--20-per {
+.width--20-px {
 	@include width(20px !important);
 }
 .width--15-per {
@@ -736,6 +736,15 @@
 
 .font-weight--400 {
 	font-weight: $font-regular;
+}
+.font-family--medium {
+	font-family: 'Inter-medium';
+}
+.font-family--semi-bold {
+	font-family: 'Inter-semiBold';
+}
+.font-family--bold {
+	font-family: 'Inter-bold';
 }
 
 .text-align--center {

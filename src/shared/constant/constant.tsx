@@ -28,3 +28,5 @@ export const userData = {
         mobileNo: "9876543210"
     }]
 };
+
+export const WINDOW_WIDTH = window.innerWidth;
