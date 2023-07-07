@@ -758,3 +758,11 @@
 .cursor--pointer {
 	cursor: pointer;
 }
+
+.b--none {
+	border: none;
+}
+
+.error {
+	color: $error-red;
+}
