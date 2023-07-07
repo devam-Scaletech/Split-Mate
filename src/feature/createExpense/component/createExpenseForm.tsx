@@ -1,6 +1,8 @@
 // import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import createExpenseStyle from '../style/createExpense.module.scss';
+import { Fragment } from 'react';
+import { memberMapper } from 'shared/constant/constant';
 
 const CreateExpenseForm = () => {
     // const navigate = useNavigate();
@@ -71,6 +73,40 @@ const CreateExpenseForm = () => {
                             Paid by is required*
                         </span>
                     )}
+                </div>
+
+                <div className='mb--30 flex flex--column expense__form--checkBox'>
+                    <p className='font-family--medium font-size--18 mb--10'>Select Member:</p>
+                    <div className='flex justify__content--between'>
+                        {retrievedUserData?.friend.map((member: any, index: number) => {
+                            const { name, image } = member;
+
+                            return (
+                                <Fragment key={index}>
+                                    <input
+                                        type="checkbox"
+                                        value={name}
+                                        id={name}
+                                        {...register('chooseCb')}
+
+                                    />
+                                    <label htmlFor="chooseCb" className='flex '>
+                                        <div className='flex flex--column align__items--center '>
+                                            <img src={`${memberMapper[image]}`} alt={name} className='width--50-px mr--10' />
+                                            <p>{name}</p>
+                                        </div>
+                                    </label>
+
+                                </Fragment>
+                            );
+                        })}
+
+                        {errors.chooseCb && (
+                            <span className="error font-size--14px mt--10">
+                                Select Member is required*
+                            </span>
+                        )}
+                    </div>
                 </div>
 
                 <div className='mt--30 mb--30 flex flex--column'>

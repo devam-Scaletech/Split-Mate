@@ -1,3 +1,9 @@
+import friendImageOne from 'assets/image/friend-image-one.png';
+import friendImageTwo from 'assets/image/friend-image-two.png';
+import friendImageThree from 'assets/image/friend-image-three.png';
+import friendImageFour from 'assets/image/friend-image-four.png';
+import friendImageFive from 'assets/image/friend-image-five.png';
+import friendImageSix from 'assets/image/friend-image-six.png';
 export const userData = {
     image: "friendImageOne",
     userName: "John Doe",
@@ -29,4 +35,12 @@ export const userData = {
     }]
 };
 
+export const memberMapper: { [key: string]: string } = {
+    'friendImageOne': friendImageOne,
+    'friendImageTwo': friendImageTwo,
+    'friendImageThree': friendImageThree,
+    'friendImageFour': friendImageFour,
+    'friendImageFive': friendImageFive,
+    'friendImageSix': friendImageSix
+};
 export const WINDOW_WIDTH = window.innerWidth;
