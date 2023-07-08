@@ -50,10 +50,10 @@ const SummaryList = () => {
 
                             <p className="font-family--bold font-size--28 text--capitalize flex flex--column text--blue"> <span className="font-size--16px mb--10 font-family--semi-bold text--black">Total Bill: </span> &#8377;&nbsp;{amount}</p>
                         </div>
-                        <div className="flex mb--30 flex--wrap">
+                        <div className={`${summaryStyle['summary__member--wrapper']} flex mb--30 flex--wrap`}>
                             {chooseCb?.map((member: string, index: number) => {
                                 return (
-                                    <div className={`flex align__items--center ml--15 ${summaryStyle['summary__member--wrapper']}`} style={{ backgroundColor: getRandomColor() }} key={index}>
+                                    <div className={`flex align__items--center ml--15 ${summaryStyle['summary__member--content']}`} style={{ backgroundColor: getRandomColor() }} key={index}>
                                         <img src={`${memberMapper[member].image}`} alt={member} title={member} className='width--75-px mr--10' />
                                         <p className='font-family--semi-bold font-size--18 flex flex--column'>{`${memberMapper[member].name}`}
                                             <span className="font-size--14px mt--10 font-family--semi-bold">Amount:&nbsp;
@@ -69,7 +69,7 @@ const SummaryList = () => {
                                 );
                             })}
                         </div>
-                        <div className='flex width--full justify__content--evenly mb--20 mt--30'>
+                        <div className={`${summaryStyle['summary__list-btn']} flex width--full justify__content--evenly mb--20 mt--30 flex--wrap `}>
                             <button className="success--btn font-size--16px font-weight--600 line-height--20px b-radius--25 width--auto cursor--pointer"
                                 onClick={() => handleOnStatus(index, 'settled')}
                             >
