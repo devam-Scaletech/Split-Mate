@@ -26,7 +26,7 @@ const SummaryList = () => {
                         <div className="flex mb--30 flex--wrap">
                             {chooseCb?.map((member: string, index: number) => {
                                 return (
-                                    <div className={`flex align__items--center ml--15 ${summaryStyle['summary__member--wrapper']}`} style={{ backgroundColor: getRandomColor() }}><img key={index} src={`${memberMapper[member].image}`} alt={member} title={member} className='width--75-px mr--10' />
+                                    <div className={`flex align__items--center ml--15 ${summaryStyle['summary__member--wrapper']}`} style={{ backgroundColor: getRandomColor() }} key={index}><img src={`${memberMapper[member].image}`} alt={member} title={member} className='width--75-px mr--10' />
                                         <p className='font-family--semi-bold font-size--18 flex flex--column'>{`${memberMapper[member].name}`}
                                             <span className="font-size--14px mt--10 font-family--semi-bold">Amount: &#8377; {(amount / (chooseCb.length + 1)).toFixed(2)}</span>
                                         </p>

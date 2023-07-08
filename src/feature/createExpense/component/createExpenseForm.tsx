@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from 'react';
+import { ChangeEvent, Fragment, useCallback, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { currentDate, memberMapper } from 'shared/constant/constant';
@@ -6,6 +6,7 @@ import { validateCheckbox } from 'shared/constant/validation-schema';
 import { IFriends } from '../interface/createExpense.interface';
 
 const CreateExpenseForm = () => {
+    const [memberData, setMemberData] = useState<IFriends[]>([]);
     const navigate = useNavigate();
     const friendList = localStorage.getItem("userData");
     const retrievedUserData = friendList && JSON.parse(friendList);
@@ -19,6 +20,16 @@ const CreateExpenseForm = () => {
         e.target.reset();
         navigate('/homePage');
     }, []);
+
+    const handleSelectChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+        const selectedFriend = e.target.value;
+        const index = retrievedUserData.friend.findIndex((friend: any) => friend.name === selectedFriend);
+        if (index !== -1) {
+            const updatedFriendArray = [...retrievedUserData.friend];
+            updatedFriendArray.splice(index, 1);
+            setMemberData(updatedFriendArray);
+        }
+    }, [memberData]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex--column width--90-per m--0-auto">
@@ -34,7 +45,7 @@ const CreateExpenseForm = () => {
 
             <div className='mt--30 flex flex--column'>
                 <label htmlFor="typeOfBill" className='font-family--medium font-size--18 mb--10'>Type of bill:</label>
-                <input type="text" placeholder="Type of bill" {...register("typeOfBill", { required: true, maxLength: 100, pattern: /^[A-Za-z\s]+$/ })} className='height--35-px b-radius--10 b--none' />
+                <input type="text" placeholder="Type of bill" {...register("typeOfBill", { required: true, maxLength: 100, pattern: /^[A-Za-z\s,]+$/, })} className='height--35-px b-radius--10 b--none' />
                 {errors.typeOfBill && (
                     <span className="error font-size--14px mt--10">
                         Type of bill Name is required*
@@ -63,7 +74,7 @@ const CreateExpenseForm = () => {
 
             <div className='mt--30 mb--30 flex flex--column'>
                 <label htmlFor="paidBy" className='font-family--medium font-size--18 mb--10'>Paid by:</label>
-                <select {...register("paidBy", { required: true })} className='height--35-px b-radius--10 b--none'>
+                <select {...register("paidBy", { required: true })} className='height--35-px b-radius--10 b--none' onChange={handleSelectChange}>
                     <option value=''>Select friend</option>);
                     {retrievedUserData?.friend.map((friendName: IFriends, index: number) => {
                         const { name } = friendName;
@@ -79,11 +90,10 @@ const CreateExpenseForm = () => {
             </div>
 
             <div className='mb--30 flex flex--column'>
-                <p className='font-family--medium font-size--18 mb--10'>Select Member:</p>
+                {memberData.length > 0 && <p className='font-family--medium font-size--18 mb--10'>Select Member:</p>}
                 <div className='flex justify__content--between'>
-                    {retrievedUserData?.friend.map((member: IFriends, index: number) => {
+                    {memberData?.map((member: IFriends, index: number) => {
                         const { name, value } = member;
-
                         return (
                             <Fragment key={index}>
                                 <input
