@@ -1,9 +1,10 @@
 import { ChangeEvent, Fragment, useCallback, useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
 import { currentDate, memberMapper } from 'shared/constant/constant';
 import { validateCheckbox } from 'shared/constant/validation-schema';
 import { IFriends } from '../interface/createExpense.interface';
+
 
 const CreateExpenseForm = () => {
     const [memberData, setMemberData] = useState<IFriends[]>([]);
@@ -96,18 +97,18 @@ const CreateExpenseForm = () => {
 
             <div className='mb--30 flex flex--column'>
                 {memberData.length > 0 && <p className='font-family--medium font-size--18 mb--10'>Select Member:</p>}
-                <div className='flex justify__content--between'>
+                <div className='flex justify__content--between flex--wrap mt--30'>
                     {memberData?.map((member: IFriends, index: number) => {
                         const { name, value } = member;
                         return (
                             <Fragment key={index}>
-                                <input
-                                    type="checkbox"
-                                    value={value}
-                                    id={name}
-                                    {...register('chooseCb', { validate: validateCheckbox })}
-                                />
-                                <label htmlFor="chooseCb" className='flex '>
+                                <label htmlFor="chooseCb" className='cursor--pointer'>
+                                    <input
+                                        type="checkbox"
+                                        value={value}
+                                        id={name}
+                                        {...register('chooseCb', { validate: validateCheckbox })}
+                                    />
                                     <div className='flex flex--column align__items--center '>
                                         <img src={`${memberMapper[value].image}`} alt={name} className='width--50-px mr--10' />
                                         <p className='font-weight--600'>{name}</p>
@@ -127,7 +128,7 @@ const CreateExpenseForm = () => {
             <div className='mt--30 mb--30 flex flex--column'>
                 <input type="submit" className="primary--btn font-size--16px font-weight--600 line-height--20px b-radius--25 width--100-px cursor--pointer m--0-auto" />
             </div>
-        </form>
+        </form >
     );
 };
 
