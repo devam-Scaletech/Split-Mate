@@ -1,7 +1,7 @@
 import { Fragment, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-import { memberMapper } from 'shared/constant/constant';
+import { currentDate, memberMapper } from 'shared/constant/constant';
 import { validateCheckbox } from 'shared/constant/validation-schema';
 import { IFriends } from '../interface/createExpense.interface';
 
@@ -11,8 +11,10 @@ const CreateExpenseForm = () => {
     const retrievedUserData = friendList && JSON.parse(friendList);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = useCallback((data: any, e: any) => {
+        const createdDate = { createdDate: currentDate };
         const dataArray = JSON.parse(localStorage.getItem('Expense') || '[]');
-        dataArray.push(data);
+        const mergedData = { ...data, ...createdDate };
+        dataArray.push(mergedData);
         localStorage.setItem('Expense', JSON.stringify(dataArray));
         e.target.reset();
         navigate('/homePage');

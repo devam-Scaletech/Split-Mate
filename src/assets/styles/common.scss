@@ -667,6 +667,17 @@
 	@include textDecoration(none);
 }
 
+.text--white {
+	color: $white-color;
+}
+
+.text--blue {
+	color: $blue-light;
+}
+
+.text--black {
+	color: $black-color;
+}
 .b-radius--10 {
 	@include borderRadius(10px !important);
 }
@@ -751,10 +762,6 @@
 	@include textAlign(center);
 }
 
-.link-text--blue {
-	color: $blue-light;
-}
-
 .cursor--pointer {
 	cursor: pointer;
 }
@@ -763,6 +770,9 @@
 	border: none;
 }
 
+.bg--transparent {
+	background-color: $background-color-transparent;
+}
 .error {
 	color: $error-red;
 }

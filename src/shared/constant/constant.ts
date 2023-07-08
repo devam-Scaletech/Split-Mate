@@ -5,6 +5,8 @@ import friendImageFour from 'assets/image/friend-image-four.png';
 import friendImageFive from 'assets/image/friend-image-five.png';
 import friendImageSix from 'assets/image/friend-image-six.png';
 import { IMember } from 'shared/interface/state';
+import moment from 'moment';
+
 export const userData = {
 	image: 'friendImageOne',
 	userName: 'John Doe',
@@ -75,4 +77,14 @@ export const memberMapper: { [key: string]: IMember } = {
 		image: friendImageSix
 	}
 };
+
+export const getRandomColor = () => {
+	const x = Math.floor(Math.random() * 256);
+	const y = Math.floor(Math.random() * 256);
+	const z = Math.floor(Math.random() * 256);
+	const RGBColor = 'rgba(' + x + ',' + y + ',' + z + ',0.5' + ')';
+	return RGBColor;
+};
+
+export const currentDate = moment().format('DD-MM-YYYY');
 export const WINDOW_WIDTH = window.innerWidth;
