@@ -22,7 +22,7 @@ export const TopHeader = () => {
 			<p className={`font-size--30 font-family--bold ${windowWidth <= 350 ? '' : 'ml--35'} `}>
 				Split Mate
 			</p>
-			<img src={friendImageOne} alt="Olivia Davis" className={`${windowWidth <= 350 ? 'd-none' : 'width--75-px mr--40 d-block'}`} />
+			<img src={friendImageOne} alt="Olivia Davis" title={'Olivia Davis'} className={`${windowWidth <= 350 ? 'd-none' : 'width--75-px mr--40 d-block'}`} />
 
 			{windowWidth <= 350 && <div className='flex align__items--center user-profile--wrapper'><img src={friendImageOne} alt="Olivia Davis" className='width--50-px mr--10' />
 				<p className='font-family--bold font-size--18'>Olivia Davis</p>

@@ -9,7 +9,7 @@ import moment from 'moment';
 
 export const userData = {
 	image: 'friendImageOne',
-	userName: 'John Doe',
+	userName: 'Olivia Davis',
 	mobileNo: '1234567890',
 	friend: [
 		{

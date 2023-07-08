@@ -11,10 +11,15 @@ const CreateExpenseForm = () => {
     const friendList = localStorage.getItem("userData");
     const retrievedUserData = friendList && JSON.parse(friendList);
     const { register, handleSubmit, formState: { errors } } = useForm();
+
     const onSubmit = useCallback((data: any, e: any) => {
         const createdDate = { createdDate: currentDate };
+        const settledBillStatus = {
+            amountStatus: false,
+            billStatus: 'Settled'
+        };
         const dataArray = JSON.parse(localStorage.getItem('Expense') || '[]');
-        const mergedData = { ...data, ...createdDate };
+        const mergedData = { ...data, ...createdDate, ...settledBillStatus };
         dataArray.push(mergedData);
         localStorage.setItem('Expense', JSON.stringify(dataArray));
         e.target.reset();
@@ -23,7 +28,7 @@ const CreateExpenseForm = () => {
 
     const handleSelectChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         const selectedFriend = e.target.value;
-        const index = retrievedUserData.friend.findIndex((friend: any) => friend.name === selectedFriend);
+        const index = retrievedUserData.friend.findIndex((friend: IFriends) => friend.name === selectedFriend);
         if (index !== -1) {
             const updatedFriendArray = [...retrievedUserData.friend];
             updatedFriendArray.splice(index, 1);
@@ -35,7 +40,7 @@ const CreateExpenseForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex--column width--90-per m--0-auto">
             <div className='mt--30 flex flex--column'>
                 <label htmlFor="billName" className='font-family--medium font-size--18 mb--10'>Bill Name:</label>
-                <input type="text" placeholder="Bill Name" {...register("billName", { required: true, maxLength: 80 })} className='height--35-px b-radius--10 b--none' />
+                <input type="text" placeholder="Eg: Friend birthday" {...register("billName", { required: true, maxLength: 80 })} className='height--35-px b-radius--10 b--none' />
                 {errors.billName && (
                     <span className="error font-size--14px mt--10">
                         Bill Name is required*
@@ -45,7 +50,7 @@ const CreateExpenseForm = () => {
 
             <div className='mt--30 flex flex--column'>
                 <label htmlFor="typeOfBill" className='font-family--medium font-size--18 mb--10'>Type of bill:</label>
-                <input type="text" placeholder="Type of bill" {...register("typeOfBill", { required: true, maxLength: 100, pattern: /^[A-Za-z\s,]+$/, })} className='height--35-px b-radius--10 b--none' />
+                <input type="text" placeholder="Eg: fast food or gift" {...register("typeOfBill", { required: true, maxLength: 100, pattern: /^[A-Za-z\s,]+$/, })} className='height--35-px b-radius--10 b--none' />
                 {errors.typeOfBill && (
                     <span className="error font-size--14px mt--10">
                         Type of bill Name is required*
@@ -57,7 +62,7 @@ const CreateExpenseForm = () => {
                 <label htmlFor="amount" className='font-family--medium font-size--18 mb--10'>Amount:</label>
                 <input
                     type="number"
-                    placeholder="Amount"
+                    placeholder="Eg: 400"
                     className='height--35-px b-radius--10 b--none'
                     {...register("amount", {
                         required: true,
