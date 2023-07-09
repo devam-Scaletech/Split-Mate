@@ -8,7 +8,7 @@ const SummaryList = () => {
     const [expenseData, setExpenseData] = useState<IExpenseData[]>([]);
     const expenseList = localStorage.getItem("Expense");
     const expenseListData = expenseList && JSON.parse(expenseList);
-
+    const [isShowSettled, setIsShowSettled] = useState(false);
     useEffect(() => {
         setExpenseData(expenseListData);
     }, [localStorage]);
@@ -21,8 +21,10 @@ const SummaryList = () => {
 
             if (status === 'settled') {
                 updatedFriendArray[index].amountStatus = true;
+                setIsShowSettled(true);
             } else if (status === 'pending') {
                 updatedFriendArray[index].amountStatus = false;
+                setIsShowSettled(false);
             } else if (status === 'remove') {
                 updatedFriendArray.splice(index, 1);
             }
@@ -39,7 +41,7 @@ const SummaryList = () => {
                 return (
                     <div key={index} className={`mr--30 mt--30 ${summaryStyle['summary__list--box']}`}>
                         <div className={`ml--20 flex justify__content--between mr--20 flex--wrap ${summaryStyle['summary__list--content']}`}>
-                            <p className="font-family--bold font-size--28 text--capitalize flex flex--column"><span className="font-size--16px mb--10 font-family--semi-bold">Bill name:</span>{billName}</p>
+                            <p className="font-family--bold font-size--28 text--capitalize flex flex--column line-height--33px"><span className="font-size--16px mb--10 font-family--semi-bold">Bill name:</span>{billName}</p>
 
                             <p className="font-family--bold font-size--28 text--capitalize flex flex--column"><span className="font-size--16px mb--10 font-family--semi-bold">Created Date:</span>{createdDate}</p>
 
@@ -70,16 +72,16 @@ const SummaryList = () => {
                             })}
                         </div>
                         <div className={`${summaryStyle['summary__list-btn']} flex width--full justify__content--evenly mb--20 mt--30 flex--wrap `}>
-                            <button className="success--btn font-size--16px font-weight--600 line-height--20px b-radius--25 width--auto cursor--pointer"
+                            {!isShowSettled && <button className="success--btn font-size--16px font-weight--600 line-height--20px b-radius--25 width--auto cursor--pointer"
                                 onClick={() => handleOnStatus(index, 'settled')}
                             >
                                 Settled bill
-                            </button>
-                            <button className="primary--btn font-size--16px font-weight--600 line-height--20px b-radius--25 width--auto cursor--pointer"
+                            </button>}
+                            {isShowSettled && <button className="primary--btn font-size--16px font-weight--600 line-height--20px b-radius--25 width--auto cursor--pointer"
                                 onClick={() => handleOnStatus(index, 'pending')}
                             >
-                                Revoke
-                            </button>
+                                Revoke all
+                            </button>}
                             <button className="error-btn font-size--16px font-weight--600 line-height--20px b-radius--25 width--auto cursor--pointer"
                                 onClick={() => handleOnStatus(index, 'remove')}
                             >

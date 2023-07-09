@@ -41,7 +41,8 @@ const CreateExpenseForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex--column width--90-per m--0-auto">
             <div className='mt--30 flex flex--column'>
                 <label htmlFor="billName" className='font-family--medium font-size--18 mb--10'>Bill Name:</label>
-                <input type="text" placeholder="Eg: Friend birthday" {...register("billName", { required: true, maxLength: 80 })} className='height--35-px b-radius--10 b--none' />
+                <input type="text" placeholder="Eg: Friend birthday" {...register("billName", { required: true, maxLength: 80 })} className='height--50-px b-radius--10 b--none pl--15'
+                />
                 {errors.billName && (
                     <span className="error font-size--14px mt--10">
                         Bill Name is required*
@@ -51,7 +52,7 @@ const CreateExpenseForm = () => {
 
             <div className='mt--30 flex flex--column'>
                 <label htmlFor="typeOfBill" className='font-family--medium font-size--18 mb--10'>Type of bill:</label>
-                <input type="text" placeholder="Eg: fast food or gift" {...register("typeOfBill", { required: true, maxLength: 100, pattern: /^[A-Za-z\s,]+$/, })} className='height--35-px b-radius--10 b--none' />
+                <input type="text" placeholder="Eg: fast food or gift" {...register("typeOfBill", { required: true, maxLength: 100 })} className='height--50-px b-radius--10 b--none pl--15' />
                 {errors.typeOfBill && (
                     <span className="error font-size--14px mt--10">
                         Type of bill Name is required*
@@ -64,7 +65,7 @@ const CreateExpenseForm = () => {
                 <input
                     type="number"
                     placeholder="Eg: 400"
-                    className='height--35-px b-radius--10 b--none'
+                    className='height--50-px b-radius--10 b--none pl--15'
                     {...register("amount", {
                         required: true,
                         minLength: 1,
@@ -80,7 +81,7 @@ const CreateExpenseForm = () => {
 
             <div className='mt--30 mb--30 flex flex--column'>
                 <label htmlFor="paidBy" className='font-family--medium font-size--18 mb--10'>Paid by:</label>
-                <select {...register("paidBy", { required: true })} className='height--35-px b-radius--10 b--none' onChange={handleSelectChange}>
+                <select {...register("paidBy", { required: true })} className='height--50-px b-radius--10 b--none pl--15' onChange={handleSelectChange}>
                     <option value=''>Select friend</option>);
                     {retrievedUserData?.friend.map((friendName: IFriends, index: number) => {
                         const { name } = friendName;
@@ -88,7 +89,7 @@ const CreateExpenseForm = () => {
                             <option value={name} key={index}>{name}</option>);
                     })}
                 </select>
-                {errors.title && (
+                {errors.paidBy && (
                     <span className="error font-size--14px mt--10">
                         Paid by is required*
                     </span>
