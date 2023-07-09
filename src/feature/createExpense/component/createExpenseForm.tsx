@@ -19,8 +19,13 @@ const CreateExpenseForm = () => {
             amountStatus: false,
             billStatus: 'Settled'
         };
+        const updatedFriendBillStatus = data.chooseCb.reduce((acc: { [key: string]: boolean }, participant: string) => {
+            acc[participant] = false;
+            return acc;
+        }, {});
+
         const dataArray = JSON.parse(localStorage.getItem('Expense') || '[]');
-        const mergedData = { ...data, ...createdDate, ...settledBillStatus };
+        const mergedData = { ...data, ...createdDate, ...settledBillStatus, friendBilStatus: updatedFriendBillStatus };
         dataArray.push(mergedData);
         localStorage.setItem('Expense', JSON.stringify(dataArray));
         e.target.reset();

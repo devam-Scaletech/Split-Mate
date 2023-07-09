@@ -86,5 +86,5 @@ export const getRandomColor = () => {
 	return RGBColor;
 };
 
-export const currentDate = moment().format('DD-MM-YYYY');
+export const currentDate = moment().format('DD MMMM, YYYY');
 export const WINDOW_WIDTH = window.innerWidth;

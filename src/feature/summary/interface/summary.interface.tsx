@@ -7,4 +7,12 @@ export interface IExpenseData {
     createdDate: string;
     amountStatus: boolean;
     billStatus: string;
+    friendBilStatus: { [key: string]: boolean };
+}
+
+export interface IPaymentModel {
+    memberName: string;
+    isShowPopUp: boolean;
+    handleOnClose: () => void;
+    handleOnPaid: () => void;
 }
