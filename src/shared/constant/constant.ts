@@ -87,4 +87,3 @@ export const getRandomColor = () => {
 };
 
 export const currentDate = moment().format('DD MMMM, YYYY');
-export const WINDOW_WIDTH = window.innerWidth;
