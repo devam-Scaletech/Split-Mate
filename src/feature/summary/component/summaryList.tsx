@@ -131,7 +131,7 @@ const SummaryList = () => {
                 );
             })}
             <PaymentModal memberName={memberData} isShowPopUp={isShowPopUp} handleOnClose={() => setIsShowPopUp(false)} handleOnPaid={handleOnPaid} />
-            {isEmpty(expenseListData) && <p className="flex justify__content--center font-size--24 font-family--bold width--full">No Expense added💲</p>}
+            {isEmpty(expenseListData) && <p className="flex justify__content--center font-size--24 font-family--bold width--full mt--40">No Expense added💲</p>}
         </div>
     );
 };

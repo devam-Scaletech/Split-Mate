@@ -11,9 +11,14 @@
 
 @media screen and (max-width: 450px) {
 	.expense-form {
-		.expense-form--title {
-			margin-left: 20px !important;
-			font-size: 20px !important;
+		.expense__form--title-wrapper {
+			.expense-form--title {
+				margin-left: 20px !important;
+				font-size: 20px !important;
+			}
+			button {
+				margin-right: 20px !important;
+			}
 		}
 	}
 }
